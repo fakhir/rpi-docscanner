@@ -2,7 +2,8 @@
 
 var Blynk = require('blynk-library');
 
-var AUTH = 'b55118d6f782481db927d320e53487a4';
+// Set your Blynk auth key below.
+var AUTH = 'BLYNK-AUTH-KEY';
 
 var blynk = new Blynk.Blynk(AUTH);
 
