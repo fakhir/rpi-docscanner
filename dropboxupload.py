@@ -58,9 +58,12 @@ def config_create(data):
 
 def config_read():
     """Reads a config file and returns its data as a dictionary."""
-    f = open(os.path.join(os.path.expanduser('~'), CONFIG_FILE), 'r')
-    data = json.load(f)
-    f.close()
+    try:
+        f = open(os.path.join(os.path.expanduser('~'), CONFIG_FILE), 'r')
+        data = json.load(f)
+        f.close()
+    except:
+        data = None
     return data
 
 if __name__ == '__main__':
