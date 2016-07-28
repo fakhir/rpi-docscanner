@@ -70,11 +70,13 @@ Then on that page select 'Create App', choose the 'Dropbox API' followed by the 
 $ cd ~/rpi-docscanner
 $ echo hello > /tmp/test.txt
 $ ./dropboxupload.py /tmp/test.txt
+```
 
 The utility should run successfully and you should see a test.txt file uploaded to your Dropbox.
 
 ## Running the docscanner
 First manually run the docscanner and check everything works fine:
+
 ```
 $ cd ~/rpi-docscanner
 $ ./blynk-docscanner.js
