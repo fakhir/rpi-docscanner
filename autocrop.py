@@ -74,13 +74,14 @@ if __name__ == '__main__':
     if len(sys.argv) == 3:
         outfilename = sys.argv[2]
     else:
-        outfilename = datetime.datetime.now().strftime('scan_%Y-%m-%d_%H:%M:%S.png')
-    outfilename = os.path.join(tempfile.gettempdir(), outfilename)
+        outfilename = sys.argv[1]
     # Auto crop the image
     image = Image.open(sys.argv[1])
     box = getbox(image)
     print "result is: ",box
     result = image.crop(box)
     # result.show()
+    if outfilename == sys.argv[1]:
+        os.unlink(outfilename)
     result.save(outfilename)
     print outfilename

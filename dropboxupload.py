@@ -38,7 +38,7 @@ def file_upload(access_token, filename):
     """Uploads a file to dropbox from the current directory."""
     client = dropbox.client.DropboxClient(access_token)
     f = open(filename, 'rb')
-    return client.put_file(filename, f)
+    return client.put_file(os.path.basename(filename), f)
 
 def file_download(access_token, filename):
     """Downloads a file from dropbox into the current directory."""
@@ -81,6 +81,7 @@ if __name__ == '__main__':
             if response is not None:
                 print 'Successfully uploaded: %s' % (response['path'])
             else:
-                print 'Failed to upload file'
+                raise Exception('Error in upload operation')
     except Exception, e:
-        print 'Failed to upload file (%s)', str(e)
+        print 'Failed to upload file (%s)' % str(e)
+        sys.exit(1)
