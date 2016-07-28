@@ -61,13 +61,11 @@ button_gray.on('write', function(param) {
 // Select box: mode select index 1: auto-crop 2: full page 3: ID card copy
 select_mode.on('write', function(param) {
   scan_mode = ['autocrop', 'fullpage', 'idcard'][param[0] - 1];
-  console.log('Select:', scan_mode, param[0]);
 });
 
 // Select box: type select index 1: receipt 2: bill 3: medical 4: tax 5: cert 6: photo 7: card
 select_type.on('write', function(param) {
   scan_type = ['receipt', 'bill', 'medical', 'tax', 'cert', 'photo', 'card'][param[0] - 1];
-  console.log('Select:', scan_type);
 });
 
 // Scan button: value 1 when pressed
@@ -119,9 +117,6 @@ button_scan.on('write', function(param) {
           }
         });
       } else {
-        console.log(stdout);
-        console.log(stderr);
-        console.log("Output:", err);
         lcd.print(0, 1, 'Uploading..');
 
         var childproc = exec('./dropboxupload.py ' + scan_file, function(err, stdout, stderr) {
@@ -136,7 +131,5 @@ button_scan.on('write', function(param) {
     }
 
   });
-
-  console.log('Scan:', scan_cmd);
 
 });
