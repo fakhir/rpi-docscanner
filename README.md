@@ -1,14 +1,18 @@
 # Raspberry Pi Scan-to-Dropbox Utility for HP Scanners
 A Raspberry Pi based scan-to-dropbox utility with a Blynk UI. Uses an HP scanner for scanning documents.
 
-# Setting up your phone
+![Screenshot](https://fakhir.github.io/rpi-docscanner/docscanner.jpg)
+
+## Setting up your phone
 Install the "Blynk" app on your phone. If you can't find the app in the store, then try using
 the direct link from the following page:
 http://docs.blynk.cc/
 
-Then within the app scan the QR code stored in qrcode.jpg within this GitHub project to import the 'HP Scanner' project.
+Then within the app scan the following QR code to import the 'HP Scanner' project:
 
-## Setting up your HP Scanner
+![QR Code](https://fakhir.github.io/rpi-docscanner/qrcode.jpg)
+
+## Setting up your HP Scanner on RPi
 This utility uses an HP scanner such as the one built into HP MFP printers. It uses the 'hp-scan' utility which comes with HPLIP to perform the scan from the Raspberry Pi. Some scanners require use of the binary plugin from HP and only HPLIP v3.15.4 or newer supports the binary plugin for ARM. As of this writing, the default Raspberry Pi package for HPLIP is older than this version, so you can get the latest version by enabling backports. See instructions here for how to enable the backports:
 
 https://backports.debian.org/Instructions/
@@ -84,4 +88,8 @@ $ ./blynk-docscanner.js
 
 Then run the 'HP Scanner' project within the Blynk app on your phone and you should now be able to scan, auto-crop and upload the scanned images to your Dropbox.
 
-You can then add the line '/<full-path-to-your-home>/rpi-docscanner/blynk-docscanner.js &' to the /etc/rc.local file on your Raspberry Pi so that it runs everytime the Raspberry Pi reboots.
+You can then add the following line to the /etc/rc.local file on your Raspberry Pi so that it runs everytime the Raspberry Pi reboots:
+
+```
+sudo -g xbian -u xbian NODE_PATH=/usr/local/lib/node_modules /home/xbian/rpi-docscanner/blynk-docscanner.js &
+```
